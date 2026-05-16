@@ -1,22 +1,13 @@
 pipeline {
 	agent any
 	stages {
-		stage('terraform init') {
+		stage('terraform steps') {
 			steps {
+				sh 'cd dynamo db and s3 bucket provisioning'
 				sh 'terraform init'
-				// Initialize Terraform and set up the backend configuration
-			}
-		}
-		stage('terraform plan') {
-			steps {
 				sh 'terraform plan'
-				// perform a Terraform plan to see the changes that will be applied
-			}
-		}
-		stage('terraform apply') {
-			steps {
-				sh 'terraform apply'
-				// perform a Terraform apply to create or update the infrastructure based on the plan
+				sh 'terraform apply -auto-approve'
+				//doing this in a single stage for simplicity, but can be broken down into multiple stages if needed
 			}
 		}
 	}
