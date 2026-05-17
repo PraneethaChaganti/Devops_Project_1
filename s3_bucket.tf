@@ -1,3 +1,7 @@
+module "versioning" {
+	source = "../Modules/versioning"
+}
+
 terraform {
 	required_providers {
 		vault = {
