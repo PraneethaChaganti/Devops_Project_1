@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('terraform steps') {
 			steps {
-				sh 'cd dynamo db and s3 bucket provisioning'
+				sh 'cd "dynamo db and s3 bucket provisioning"'
 				sh 'terraform init'
 				sh 'terraform plan'
 				sh 'terraform apply -auto-approve'
