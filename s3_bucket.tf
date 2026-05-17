@@ -1,7 +1,7 @@
 terraform {
 	required_providers {
 		local = {
-			source = "../modules/versioning"
+			source = "../modules/versioning.tf"
 		}
 		vault = {
 			source = "hashicorp/vault"
