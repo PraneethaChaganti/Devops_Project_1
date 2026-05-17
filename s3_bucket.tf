@@ -1,5 +1,5 @@
 module "versioning" {
-	source = "../Modules/versioning"
+	source = "../Modules"
 }
 
 terraform {
