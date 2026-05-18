@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('terraform steps') {
 			steps {
-				sh 'terraform init'
+				sh 'terraform init -upgrade'
 				sh 'terraform plan'
 				sh 'terraform apply -auto-approve'
 				//doing this in a single stage for simplicity, but can be broken down into multiple stages if needed
