@@ -17,16 +17,16 @@ provider "vault" {
 	address = "http://127.0.0.1:8200"
 }
 
-data "vault_aws_credentials" "creds" {
+data "vault_aws_access_credentials" "creds" {
 	backend = "aws"
-	role = "terraformadmin"
+	role = "terraform-admin"
 }
 
 provider "aws" {
 	region = "us-east-1"
-	access_key = data.vault_aws_credentials.creds.access_key
-	secret_key = data.vault_aws_credentials.creds.secret_key
-	token = data.vault_aws_credentials.creds.security_token
+	access_key = data.vault_aws_access_credentials.creds.access_key
+	secret_key = data.vault_aws_access_credentials.creds.secret_key
+	token = data.vault_aws_access_credentials.creds.security_token
 }
 
 resource "aws_s3_bucket" "bucket" {
