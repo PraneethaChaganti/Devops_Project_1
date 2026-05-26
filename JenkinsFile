@@ -6,6 +6,8 @@ pipeline {
 				sh 'rm -rf .terraform'
 				sh 'rm -rf .terraform.lock.hcl'
 				sh 'rm -rf ~/.terraform.d/plugin-cache'
+				sh 'export VAULT_ADDR=http://127.0.0.1:8200'
+				sh 'export VAULT_TOKEN=$VAULT_TOKEN_SECRET'
 				sh 'terraform init -upgrade'
 				sh 'terraform plan'
 				sh 'terraform apply -auto-approve'
