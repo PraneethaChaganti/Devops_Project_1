@@ -14,13 +14,12 @@ terraform {
 }
 
 provider "vault" {
-	address = "http://127.0.0.1:8200"
-	token = "myroot"
+
 }
 
 data "vault_aws_access_credentials" "creds" {
 	backend = "aws"
-	role = "terraform-admin"
+	role = "app-role"
 }
 
 provider "aws" {
