@@ -3,18 +3,25 @@ pipeline {
 	stages {
 		stage('terraform steps') {
 			steps {
-				sh 'rm -rf .terraform'
-				sh 'rm -rf .terraform.lock.hcl'
-				sh 'terraform init -upgrade'
-				withEnv([
-					"VAULT_ADDR=http://vault:8200",
-					"VAULT_TOKEN=${VAULT_TOKEN_SECRET}"
-				]) {
-					sh '''
-						terraform plan
-						terraform apply -auto-approve
-					'''
-				}
+				
+                withCredentials([
+                    string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')
+                ]) {
+
+                    withEnv([
+                        "VAULT_ADDR=http://vault:8200"
+                    ]) {
+
+                        sh '''
+                            rm -rf .terraform
+                            rm -rf .terraform.lock.hcl
+
+                            terraform init -upgrade
+                            terraform plan
+                            terraform apply -auto-approve
+                        '''
+                    }
+                }
 			}
 		}
 	}
