@@ -12,13 +12,11 @@ pipeline {
                         "VAULT_ADDR=http://vault:8200"
                         "TF_PLUGIN_CACHE_DIR=$HOME/.terraform.d/plugin-cache"
                     ]) {
-                        sh '''
+                         retry(3) {
+                            sh '''
                                 mkdir -p $TF_PLUGIN_CACHE_DIR
                                 rm -rf .terraform
                                 rm -rf .terraform.lock.hcl
-                        '''
-                         retry(3) {
-                            sh '''
                                 terraform init -upgrade
                             '''
                         }
