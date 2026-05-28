@@ -11,18 +11,22 @@ pipeline {
                     withEnv([
                         "VAULT_ADDR=http://vault:8200"
                     ]) {
-
-                        sh '''
-                            rm -rf .terraform
-                            rm -rf .terraform.lock.hcl
-
-                            terraform init -upgrade
-                            terraform plan
-                            terraform apply -auto-approve
-                        '''
+                         retry(3) {
+                            sh '''
+                                rm -rf .terraform
+                                rm -rf .terraform.lock.hcl
+                                terraform init -upgrade
+                            '''
+                        }
                     }
                 }
 			}
 		}
+           stage('terraform steps') {
+			   steps {
+                sh 'terraform plan'
+                sh 'terraform apply -auto-approve'
+                }
+           }
 	}
 }
