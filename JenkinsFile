@@ -10,10 +10,10 @@ pipeline {
 
                     withEnv([
                         "VAULT_ADDR=http://vault:8200"
-                        "TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache"
                     ]) {
                          retry(3) {
                             sh '''
+                                export TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache
                                 mkdir -p $TF_PLUGIN_CACHE_DIR
                                 rm -rf .terraform
                                 rm -rf .terraform.lock.hcl
