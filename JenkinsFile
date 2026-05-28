@@ -10,7 +10,7 @@ pipeline {
 
                     withEnv([
                         "VAULT_ADDR=http://vault:8200"
-                        "TF_PLUGIN_CACHE_DIR=${env.HOME}/.terraform.d/plugin-cache"
+                        "TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache"
                     ]) {
                          retry(3) {
                             sh '''
