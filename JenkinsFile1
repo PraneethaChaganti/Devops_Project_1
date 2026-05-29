@@ -1,0 +1,17 @@
+stage('Vault Debug') {
+    steps {
+        withCredentials([
+            string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')
+        ]) {
+            sh '''
+                echo "VAULT_ADDR=$VAULT_ADDR"
+
+                curl -v $VAULT_ADDR/v1/sys/health || true
+
+                vault status || true
+
+                vault read aws/creds/app-role || true
+            '''
+        }
+    }
+}
