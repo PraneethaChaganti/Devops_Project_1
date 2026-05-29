@@ -44,8 +44,8 @@ pipeline {
 		}
            stage('terraform plan') {
 			   steps {
-                sh 'terraform plan'
-                sh 'terraform apply -auto-approve'
+                sh 'terraform plan -var="vault_token=$VAULT_TOKEN"'
+                sh 'terraform apply -auto-approve -var="vault_token=$VAULT_TOKEN"'
                 }
            }
 	}
