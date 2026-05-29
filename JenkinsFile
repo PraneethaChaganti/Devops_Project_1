@@ -8,13 +8,7 @@ pipeline {
                 string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')
                 ]) {
                     sh '''
-                    echo "VAULT_ADDR=$VAULT_ADDR"
-
-                    curl -v $VAULT_ADDR/v1/sys/health || true
-
-                    vault status || true
-
-                    vault read aws/creds/app-role || true
+                    
                    '''
                 }
             }
@@ -32,6 +26,10 @@ pipeline {
                     ]) {
                          retry(3) {
                             sh '''
+                                echo "VAULT_ADDR=$VAULT_ADDR"
+                                curl -v $VAULT_ADDR/v1/sys/health || true
+                                vault status || true
+                                vault read aws/creds/app-role || true
                                 export TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache
                                 mkdir -p $TF_PLUGIN_CACHE_DIR
                                 rm -rf .terraform
