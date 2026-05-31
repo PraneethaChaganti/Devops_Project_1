@@ -1,19 +1,6 @@
 pipeline {
 	agent any
-	stages {
-
-        stage('Vault Debug') {
-            steps {
-                withCredentials([
-                string(credentialsId: 'vault-token', variable: 'VAULT_TOKEN')
-                ]) {
-                    sh '''
-                    
-                   '''
-                }
-            }
-        }
-
+	stages {  
 		stage('terraform steps') {
 			steps {
 				
