@@ -30,6 +30,15 @@ pipeline {
                                 curl -v $VAULT_ADDR/v1/sys/health || true
                                 export TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache
                                 mkdir -p $TF_PLUGIN_CACHE_DIR
+                                set -e
+                                echo "Checking Vault environment..."
+                                env | grep VAULT_ADDR
+                                if [ -z "$VAULT_TOKEN" ]; then
+                                echo "ERROR: VAULT_TOKEN is empty"
+                                exit 1
+                                fi
+                                echo "VAULT_TOKEN is present"
+                                curl -s $VAULT_ADDR/v1/sys/health
                                 rm -rf .terraform
                                 rm -rf .terraform.lock.hcl
                                 export VAULT_ADDR
