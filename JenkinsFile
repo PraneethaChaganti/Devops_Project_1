@@ -13,6 +13,7 @@ pipeline {
                     ]) {
                          retry(3) {
                             sh '''
+                                echo $VAULT_TOKEN
                                 echo "VAULT_ADDR=$VAULT_ADDR"
                                 curl -v $VAULT_ADDR/v1/sys/health || true
                                 export TF_PLUGIN_CACHE_DIR=/var/jenkins_home/.terraform.d/plugin-cache
