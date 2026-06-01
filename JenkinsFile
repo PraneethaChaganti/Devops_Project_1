@@ -33,17 +33,13 @@ pipeline {
                                 export VAULT_TOKEN=$VAULT_TOKEN
                                 env | grep VAULT
                                 terraform init -upgrade
+                                sh 'terraform plan -var="vault_token=$VAULT_TOKEN"'
+                                sh 'terraform apply -auto-approve -var="vault_token=$VAULT_TOKEN"'
                             '''
                         }
                     }
                 }
 			}
 		}
-           stage('terraform plan') {
-			   steps {
-                sh 'terraform plan -var="vault_token=$VAULT_TOKEN"'
-                sh 'terraform apply -auto-approve -var="vault_token=$VAULT_TOKEN"'
-                }
-           }
 	}
 }
