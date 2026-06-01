@@ -6,6 +6,7 @@ terraform {
 	required_providers {
 		vault = {
 			source = "hashicorp/vault"
+			version = "2.0.0"
 		}
 		aws = {
 			source = "hashicorp/aws"
@@ -15,6 +16,7 @@ terraform {
 }
 
 provider "vault" {
+
 }
 
 data "vault_aws_access_credentials" "creds" {
