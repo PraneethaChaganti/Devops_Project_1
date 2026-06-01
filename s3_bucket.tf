@@ -15,8 +15,7 @@ terraform {
 }
 
 provider "vault" {
-	address = "http://172.18.0.3:8200"
-	token="var.vault_token"
+	...
 }
 
 data "vault_aws_access_credentials" "creds" {
