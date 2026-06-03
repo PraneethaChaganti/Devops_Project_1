@@ -24,6 +24,7 @@ data "vault_aws_access_credentials" "creds" {
 	role = "app-role"
 }
 
+
 provider "aws" {
 	region = "us-east-1"
 	access_key = data.vault_aws_access_credentials.creds.access_key
