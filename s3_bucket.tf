@@ -31,7 +31,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = "Praneetha_harshad_2092_bucket"
+  bucket = "s3-bucket-2092-provision-practice-2026-terraform-state-file-storing"
 }
 
 resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
