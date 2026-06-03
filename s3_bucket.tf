@@ -31,7 +31,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "Praneetha_harshad_2092_bucket" {
-  bucket = "my-bucket"
+  bucket = "Praneetha_harshad_2092_bucket"
 }
 
 resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
