@@ -30,7 +30,7 @@ provider "aws" {
 	secret_key = data.vault_aws_access_credentials.creds.secret_key
 }
 
-resource "aws_s3_bucket" "Praneetha2092_bucket" {
+resource "aws_s3_bucket" "Praneetha_harshad_2092_bucket" {
   bucket = "my-bucket"
 }
 
