@@ -31,7 +31,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "bucket" {
-  bucket = "s3-bucket-2092-provision-practice-2026-terraform-state-file-storing"
+  bucket = "s3-bucket-2026-terraform-state-file"
 }
 
 resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
