@@ -34,12 +34,10 @@ pipeline {
                                 env | grep VAULT
                                 curl -s -H "X-Vault-Token: $VAULT_TOKEN" $VAULT_ADDR/v1/auth/token/lookup-self
                                 terraform init -upgrade
+                                terraform plan
+                                terraform apply -auto-approve
                             '''
                         }
-                        sh '''
-                            terraform plan -out=tfplan
-                            terraform apply -auto-approve tfplan
-                        '''
                     }
                 }
 			}
