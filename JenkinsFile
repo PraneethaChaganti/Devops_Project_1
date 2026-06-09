@@ -41,7 +41,7 @@ pipeline {
                                 CREDS=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" http://vault:8200/v1/aws/creds/s3-role)
                                 export AWS_ACCESS_KEY_ID=$(echo "$CREDS" | jq -r '.data.access_key')
                                 export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.data.secret_key')
-                                aws sts get-caller-identity
+                                aws sts get-caller-identity --debug
                                 terraform init -upgrade
                             '''
                         }
