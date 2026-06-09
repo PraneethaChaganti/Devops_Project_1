@@ -33,6 +33,8 @@ pipeline {
                                 export VAULT_TOKEN=$VAULT_TOKEN
                                 env | grep VAULT
                                 curl -s -H "X-Vault-Token: $VAULT_TOKEN" $VAULT_ADDR/v1/auth/token/lookup-self
+                                unset AWS_ACCESS_KEY_ID
+                                unset AWS_SECRET_ACCESS_KEY
                                 CREDS=$(curl -s --header "X-Vault-Token: $VAULT_TOKEN" http://vault:8200/v1/aws/creds/s3-role)
                                 export AWS_ACCESS_KEY_ID=$(echo "$CREDS" | jq -r '.data.access_key')
                                 export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.data.secret_key')
