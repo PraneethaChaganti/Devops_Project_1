@@ -33,6 +33,9 @@ pipeline {
                                 export VAULT_TOKEN=$VAULT_TOKEN
                                 env | grep VAULT
                                 curl -s -H "X-Vault-Token: $VAULT_TOKEN" $VAULT_ADDR/v1/auth/token/lookup-self
+                                CREDS=$(vault read -format=json aws/creds/app-role)
+                                export AWS_ACCESS_KEY_ID=$(echo "$CREDS" | jq -r '.data.access_key')
+                                export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.data.secret_key')
                                 aws sts get-caller-identity --debug
                                 terraform init -upgrade
                             '''
