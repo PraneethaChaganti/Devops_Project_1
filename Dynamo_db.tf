@@ -15,13 +15,3 @@ resource aws_dynamodb_table "dynamodb_table" {
   ManagedBy   = "Terraform"
 	}
 }
-
-
-terraform {
-  backend "s3" {
-    bucket         = "s3-bucket-2026-terraform-state-file"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "dynamodb-table-2026-terraform-state-locking"
-  }
-}
