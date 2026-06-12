@@ -33,6 +33,4 @@ provider "aws" {
 	region = "us-east-1"
 	access_key = data.vault_aws_access_credentials.creds.access_key
 	secret_key = data.vault_aws_access_credentials.creds.secret_key
-	access_key = data.vault_aws_access_credentials.s3.access_key
-	secret_key = data.vault_aws_access_credentials.s3.secret_key
 }
