@@ -41,12 +41,10 @@ pipeline {
                                 env | grep AWS
                                 aws sts get-caller-identity --no-cli-pager
                                 terraform init -upgrade
+                                terraform plan -out=tfplan
+                                terraform apply -auto-approve tfplan
                             '''
                         }
-                        sh '''
-                            terraform plan -out=tfplan
-                            terraform apply -auto-approve tfplan
-                        '''
                     }
                 }
 			}
