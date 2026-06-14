@@ -38,6 +38,7 @@ pipeline {
                                 export AWS_SECRET_ACCESS_KEY=$(echo "$CREDS" | jq -r '.data.secret_key')
                                 aws configure list
                                 sleep 20
+                                env | grep AWS
                                 aws sts get-caller-identity --no-cli-pager
                                 terraform init -upgrade
                             '''
