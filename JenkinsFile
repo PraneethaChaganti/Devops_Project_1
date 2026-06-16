@@ -40,7 +40,7 @@ pipeline {
                                 sleep 20
                                 env | grep AWS
                                 aws sts get-caller-identity --no-cli-pager
-                                terraform init -upgrade
+                                terraform init -upgrade -migrate-state -input=false
                                 terraform plan -out=tfplan
                                 terraform apply -auto-approve tfplan
                                 aws s3 ls s3://praneetha-tf-state-bucket-123456/ec2/
