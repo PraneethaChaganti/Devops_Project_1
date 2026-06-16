@@ -43,6 +43,7 @@ pipeline {
                                 terraform init -upgrade
                                 terraform plan -out=tfplan
                                 terraform apply -auto-approve tfplan
+                                aws s3 ls s3://praneetha-tf-state-bucket-123456/ec2/
                             '''
                         }
                     }
